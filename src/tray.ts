@@ -35,22 +35,27 @@ export default async function tray_init() {
     },
   };
 
-  async function winShowFocus() {
-    // 获取窗体实例
-    const win = getCurrentWindow();
-    // 检查窗口是否见，如果不可见则显示出来
-    if (!(await win.isVisible())) {
-      win.show();
-    } else {
-      // 检查是否处于最小化状态，如果处于最小化状态则解除最小化
-      if (await win.isMinimized()) {
-        await win.unminimize();
-      }
-      // 窗口置顶
-      await win.setFocus();
-    }
-  }
-
   const tray = await TrayIcon.new(options);
   return tray;
+}
+
+async function winShowFocus() {
+  // 获取窗体实例
+  const win = getCurrentWindow();
+  // 检查窗口是否见，如果不可见则显示出来
+  if (!(await win.isVisible())) {
+    win.show();
+  } else {
+    // 检查是否处于最小化状态，如果处于最小化状态则解除最小化
+    if (await win.isMinimized()) {
+      await win.unminimize();
+    }
+    // 窗口置顶
+    await win.setFocus();
+  }
+}
+
+export async function winHide() {
+  const win = getCurrentWindow();
+  await win.hide();
 }

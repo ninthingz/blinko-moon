@@ -1,7 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { winHide } from "./tray";
+</script>
 
 <template>
   <div
+    @keydown="$event.key === 'Escape' && winHide()"
     data-tauri-drag-region
     class="flex items-center justify-center min-h-screen"
     style="background-color: rgba(255, 255, 255, 0.9)"
