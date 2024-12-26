@@ -1,4 +1,3 @@
-import { TrayIcon } from "@tauri-apps/api/tray";
 import { Menu } from "@tauri-apps/api/menu";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { exit } from "@tauri-apps/plugin-process";
@@ -28,26 +27,7 @@ export default async function tray_init() {
     ],
   });
 
-  const options = {
-    icon: "icons/128x128.png",
-    menu,
-    menuOnLeftClick: false,
-    // 托盘行为
-    action: (event: any) => {
-      if (
-        event.type === "Click" &&
-        event.button === "Left" &&
-        event.buttonState === "Down"
-      ) {
-        console.log("单击事件");
-        // 显示窗口
-        winShowFocus(0, 0);
-      }
-    },
-  };
-
-  const tray = await TrayIcon.new(options);
-  return tray;
+  return menu;
 }
 
 export async function winShowFocus(x: number, y: number) {
