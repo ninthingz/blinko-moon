@@ -1,12 +1,22 @@
 import { TrayIcon } from "@tauri-apps/api/tray";
 import { Menu } from "@tauri-apps/api/menu";
-import { cursorPosition, getCurrentWindow } from "@tauri-apps/api/window";
+import { getCurrentWindow } from "@tauri-apps/api/window";
 import { exit } from "@tauri-apps/plugin-process";
-import { LogicalPosition, PhysicalPosition } from "@tauri-apps/api/dpi";
+import { PhysicalPosition } from "@tauri-apps/api/dpi";
+import { router } from "./router";
 
 export default async function tray_init() {
   const menu = await Menu.new({
     items: [
+      {
+        id: "settings",
+        text: "设置",
+        action: async () => {
+          // 退出逻辑
+          await winShowFocus(0, 0);
+          router.push("/settings");
+        },
+      },
       {
         id: "quit",
         text: "退出",
