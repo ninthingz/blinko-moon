@@ -1,6 +1,6 @@
 use tauri::{
-    menu::{Menu, MenuItem, Submenu},
-    tray::{self, MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
+    menu::{Menu, MenuItem},
+    tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
     Manager, Runtime,
 };
 
@@ -31,6 +31,7 @@ pub fn create_tray<R: Runtime>(app: &tauri::AppHandle<R>) -> tauri::Result<()> {
     let menu = Menu::with_items(app, &[&settings_i, &quit_i])?;
 
     let _ = TrayIconBuilder::with_id("tray")
+        .tooltip("Blinko Moon")
         .icon(app.default_window_icon().unwrap().clone())
         .menu(&menu)
         .menu_on_left_click(false)
