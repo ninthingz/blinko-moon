@@ -27,7 +27,6 @@ fn get_mouse_coordinates() -> (i32, i32) {
 pub fn create_tray<R: Runtime>(app: &tauri::AppHandle<R>) -> tauri::Result<()> {
     let settings_i = MenuItem::with_id(app, "settings", "设置", true, None::<&str>)?;
     let quit_i = MenuItem::with_id(app, "quit", "退出", true, None::<&str>)?;
-    // 分割线
     let menu = Menu::with_items(app, &[&settings_i, &quit_i])?;
 
     let _ = TrayIconBuilder::with_id("tray")

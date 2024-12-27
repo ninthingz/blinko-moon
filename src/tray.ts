@@ -11,7 +11,6 @@ export default async function tray_init() {
         id: "settings",
         text: "设置",
         action: async () => {
-          // 退出逻辑
           await winShowFocus(0, 0);
           router.push("/settings");
         },
@@ -20,7 +19,6 @@ export default async function tray_init() {
         id: "quit",
         text: "退出",
         action: async () => {
-          // 退出逻辑
           await exit();
         },
       },
