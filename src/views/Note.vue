@@ -10,9 +10,15 @@ onMounted(() => {
   textarea.value?.focus();
 });
 
-const handleKeydown = (e: KeyboardEvent) => {
+const handleKeydown = async (e: KeyboardEvent) => {
   if (e.key === "Enter" && e.ctrlKey) {
-    upsertNote(content.value);
+    try {
+      await upsertNote(content.value);
+    } catch (error) {
+      console.error(error);
+      return;
+    }
+    content.value = "";
     winHide();
   }
 };
