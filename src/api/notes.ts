@@ -5,7 +5,7 @@ export const upsertNote = async (content: string) => {
 
   const options = {
     method: "POST",
-    url: "https://mygo.ninthing.one/api/v1/note/upsert",
+    url: "https://mygo.ninthing.one:18690/api/v1/note/upsert",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
